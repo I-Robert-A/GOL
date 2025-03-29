@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
 typedef struct list list;
 
 struct list
@@ -93,7 +92,7 @@ void FOP(FILE **fisier, const char *nume, const char var[3])
 int verificareVec(FILE *fisier, char **ma, int i, int j, int n, int m)
 {
     int k=0;
-    if(((i-1)>0) && ((j-1)>0))
+    if(((i-1)>=0) && ((j-1)>=0))
     {
         if(ma[i-1][j-1]=='X')
         k++;
@@ -136,27 +135,44 @@ int verificareVec(FILE *fisier, char **ma, int i, int j, int n, int m)
     
             return k;
 }
-void reguli(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT)
+void reguli(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p)
 {
-    int i,j,ko,l,c;
-    char car;
+    int i,j,ko,l,c,r=0;
+    char lista[256];
     list* top=NULL;
-    FILE *test;
-    FOP(&test,"mOUT","wt");
+    //FILE *test;
+    //FOP(&test,"mOUT","wt");
     while(k!=0)
     {    
+        r++;
+        //kk=0;
+        if(p==2)
+        {
+            sprintf(lista, "%d", r);
+            fputs(lista,mOUT);
+            //putc(' ',mOUT);
+        }
         for(i=0;i<n;i++)
         {
             for(j=0;j<m;j++)
             {
-                car='0';
+                //car='0';
                 ko=verificareVec(fisier,ma,i,j,n,m);
                 if((ma[i][j]=='X' && (ko<2 || ko>3)) || (ma[i][j]=='+' && ko==3))
                 {
-                    push(&top,i,j); 
+                    push(&top,i,j);
+                    if(p==2)
+                    {
+                    putc(' ',mOUT);
+                    sprintf(lista, "%d", i);
+                    fputs(lista,mOUT);
+                    putc(' ',mOUT);
+                    sprintf(lista, "%d", j);
+                    fputs(lista,mOUT);
+                    }
                 } 
-                car=car+ko;
-                putc(car,test);
+                //car=car+ko;
+                //putc(car,test);
             }
         }
         while(top!=NULL)
@@ -170,10 +186,34 @@ void reguli(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT)
             {
                 ma[l][c]='X';
             }
+            /*if(p==2)
+            {   
+                for(i=kk-1;i>=0;i--)
+                {
+                    v[i+1]=v[i];
+                }
+                v[0]=c;
+                kk++;
+                for(i=kk-1;i>=0;i--)
+                {
+                    v[i+1]=v[i];
+                }
+                v[0]=l;
+                kk++;
+            }*/
         }
-        putc('\n',test);
-        afisare(ma,n,m,mOUT);
-        printf("%d\n", k);
+       // putc('\n',test);
+       if(p==1)
+        {afisare(ma,n,m,mOUT);}
+        else if(p==2)
+        {   /*for(i=0;i<kk;i++)
+            {sprintf(lista, "%d", v[i]);
+            fputs(lista,mOUT);
+            putc(' ',mOUT);
+            }*/
+            fputs("\n", mOUT);
+            //strcpy(lista,"");
+        }
         k--;
     }
 }
@@ -198,8 +238,9 @@ fscanf(mINT, "%d %d %d %d", &p,&n, &m, &k);
     }
     citire(mINT,ma,n,m);
     FOP(&mOUT,argv[2],"wt"); 
-    afisare(ma,n,m,mOUT);
-    reguli(mINT,ma,n,m,k,mOUT);
+    if(p==1)
+    {afisare(ma,n,m,mOUT);}
+    reguli(mINT,ma,n,m,k,mOUT,p);
     for(i=0;i<n;i++)
     {
         free(ma[i]);
