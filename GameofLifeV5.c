@@ -51,12 +51,12 @@ void initTree(Node **root)
 (*root)->lista=NULL;
 }
 
-
+/*
 int isEmpty (Node *root)
 {
 return (root==NULL); 
 }
-
+*/
 
 /*
 void eliberare(list **top)
@@ -160,7 +160,7 @@ int verificareVec(FILE *fisier, char **ma, int i, int j, int n, int m)
 
 list *reguli(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p)
 {
-    int i,j,ko,l,c,r=0;
+    int i,j,ko;
     char lista[256];
     list* top=NULL;
     //top=(list*)malloc(sizeof(list));
@@ -202,9 +202,8 @@ list *reguli(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p)
 Node * CreateA(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, int *r, int *r1)
 {
 int li,co,j;
-char c ;
 Node * root = ( Node *) malloc ( sizeof ( Node ));
-list *top;
+list *top,*elem;
 char **maT;
 afisare(ma,n,m,mOUT);
 maT=(char**)calloc(n,sizeof(char*));
@@ -242,6 +241,7 @@ if((*r)<=k)
         {
             li=top->l;
             co=top->c;
+            elem=top;
             //printf("%d",l);
            if(maT[li][co]=='X')
             {
@@ -252,8 +252,14 @@ if((*r)<=k)
                 maT[li][co]='X';
             }
             top=top->next;
+            free(elem);
         }
     root -> left = CreateA(fisier,maT,n,m,k,mOUT,p,r,r1);
+    for(i=0;i<n;i++)
+    {
+        free(maT[i]);
+    }
+    free(maT);
 }
 (*r1)++;
 (*r)--;
@@ -264,6 +270,7 @@ while(top!=NULL)
         {
             li=top->l;
             co=top->c;
+            elem=top;
             //printf("%d",l);
            if(ma[li][co]=='X')
             {
@@ -274,12 +281,13 @@ while(top!=NULL)
                 ma[li][co]='X';
             }
             top=top->next;
+            free(elem);
         }
 root->right= CreateA(fisier,ma,n,m,k,mOUT,p,r,r1);
 (*r1)--;
 }
 
-
+/*
 void preorder ( Node * root, char** ma, int n, int m, FILE* mOUT) 
 {list* top;
     int l,c;
@@ -303,10 +311,19 @@ if ( root )
     preorder ( root -> right,ma,n,m,mOUT);
 }
 }
-
+*/
+/*
+void postorder ( Node **root ){
+if ( root )
+{
+postorder ( (*root)->left );
+postorder ( (*root)->right );
+free((*root));
+}
+}*/
 void taskuri(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p)
 {
-    int i,j,ko,l,c,r=0;
+    int l,c,r=0;
     char lista[256];
     list* top=NULL;
     printf("ffff");
@@ -379,7 +396,10 @@ fscanf(mINT, "%d %d %d %d", &p,&n, &m, &k);
     }
     else
     {
-        Node * root = CreateA(mINT,ma,n,m,k,mOUT,p,&r,&r1);
+        Node *root = NULL;
+        initTree(&root);
+        root=CreateA(mINT,ma,n,m,k,mOUT,p,&r,&r1);
+        //postorder(&root);
         //preorder(root,ma,n,m,mOUT);
     }
     for(i=0;i<n;i++)
