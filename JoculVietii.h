@@ -15,6 +15,16 @@ struct stiva
     list* Lista;
     stiva* next;
 };
+struct N {
+ list* lista;
+struct N * left ,* right ;
+};
+typedef struct N Node ;
+
+typedef struct {
+    int V, E;
+    int **a;
+} Graph;
 
 void pushL(stiva **top, list *elemL);
 list* copiazaLista(list* original);
@@ -26,6 +36,13 @@ void citire(FILE *fisier, char **ma, int n, int m);
 void afisare(char **ma, int n, int m, FILE* fisier);
 void FOP(FILE **fisier, const char *nume, const char var[3]);
 int verificareVec(FILE *fisier, char **ma, int i, int j, int n, int m);
-void reguli(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, stiva** topS, int *q);
+list *reguli(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p);
 void task2(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, stiva** topS, int *q);
 void eliberareStivaComplet(stiva *top);
+void initTree(Node **root);
+void postorder(Node **root);
+Node * CreateA(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, int *r, int *r1);
+void taskuri(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p);
+void elibereazaLista(list *top);
+void DFS_scan(Graph *g, int visited[], int i, int k, list **top,list** maxList, int*max, int remaining);
+void task4(Node *root, char **ma, int n, int m, FILE* mOUT);
