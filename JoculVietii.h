@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
 typedef struct list list;
 
@@ -44,5 +45,7 @@ void postorder(Node **root);
 Node * CreateA(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, int *r, int *r1);
 void taskuri(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p);
 void elibereazaLista(list *top);
-void DFS_scan(Graph *g, int visited[], int i, int k, list **top,list** maxList, int*max, int remaining);
+void DFS(Graph *g, int *visited, int i, int k, list **top, list **maxList,int *max, int remaining,int *comp_conex, bool *inComp);
+void DFS_scan(Graph *g, int visited[], int i, int **comp_conex, int y, int *ko);
 void task4(Node *root, char **ma, int n, int m, FILE* mOUT);
+void bonus(stiva **topS, char **ma, int n, int m);

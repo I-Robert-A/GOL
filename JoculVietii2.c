@@ -43,7 +43,9 @@ fscanf(mINT, "%d %d %d %d", &p,&n, &m, &k);
     }
     if(p==2)
     {   //task2(mINT,ma,n,m,k,mOUT,p,&topS,&q);
-        //afisareS(&topS,mOUT,q);
+        //merge dar dureaza mult!!
+        //afisareS(&topS, mOUT, q);
+    //eliberareStivaComplet(topS);
         }
     for(i=0;i<n;i++)
     {
@@ -52,6 +54,6 @@ fscanf(mINT, "%d %d %d %d", &p,&n, &m, &k);
     free(ma);
 fclose(mINT);
 fclose(mOUT);
-eliberareStivaComplet(topS);
+//eliberareStivaComplet(topS);
     return 0;
 }
