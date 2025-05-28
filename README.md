@@ -23,7 +23,7 @@ In fisierul GameofLifeB.c se afla toate functiile, iar in JoculVietii2.c se afla
 * Functia DFS este folosita in Task4 si realizeaza o parcurgere in adancime pentru o componenta conexa pentru a afla cel mai lung lant Hamiltonian, folosind si o metoda de optimizare ce verifica daca cumva cel mai lung lant Hamiltonian gasit pana acum nu este cel mai lung lant posibil din acea componenta
 * Functia verificareVec este folosita pentru Taskurile 1 si 3 si numara cati vecini vii are o celula
 * Functia verificareVec2 este folosita la Taskul2 si numara cati vecini vii are o celula dar fara a se folosi de o matrice
-* Functia reguli este folosita atat la Task 1 cat si 3 si aceasta aplica fie regula standard din GameofLife fie cea specifica taskului 3 si introduce intr o lista modificarile
+* Functia reguli este folosita atat la Task 1 cat si 3 si aceasta aplica fie regula standard din GameofLife fie cea specifica taskului 3 si introduce intr-o lista modificarile
 * Functia taskuri aplica modificarile din lista matricei si o si afiseaza in cazul Taskului 1
 * Functia bonus preia o matrice la o anumita generatie si stiva de liste de schimbari corespunzatoare acelei generatii si restaureaza matricea la starea sa initiala
 * Functia CreateA contine atat Taskul 3 cat si Taskul 4, acesta realizeaza arborele dupa regulile corespunzatoare folosindu-se de o pracurgere in preordine pentru a genera nodurile, unde r reprezinta numarul de intrari pe partea stanga si r1 numarul de intrari pe partea dreapta, iar pentru task 4, mai intai creeaza graful si matricea de adiacenta corespunzatoare lui, avand in vedere ca o muchie intre doua noduri se formeaza atunci cand douca celule vii sunt vecini.
