@@ -16,7 +16,7 @@ Trebuie rulat programul GameofLifeB.c alaturi de JoculVietii2.c, iar biblioteca 
 
 # Structura si functii importante
 
-In fisierul GameofLifeB.c se afla toate functiile, iar in JoculVietii2.c se afla main ul.
+In fisierul GameofLifeB.c se afla toate functiile, iar in JoculVietii2.c se afla functia main.
 * Functiile pushL respectiv popL sunt folosite pentru Taskul2 pentru a introduce si pentru a scoate un element din stiva
 * Functia DFS_scan este folosita la Task4 si rolul sau este de a parcurge graful in adancime si de a memora intr-o matrice componentele conexe
 * Functia buildInCompVector este folosita in Task4 si se foloseste de o variabile booleana pentru a stoca nodurile prezente in componenta conexa curenta
