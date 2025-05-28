@@ -5,7 +5,7 @@ Acesta este un program ce simuleaza in C regulile Game of Life in functie de une
 ## Caracteristici
 
 * Se foloseste de matrice pentru a simula celule din Game of Life, unde "X" reprezinta starea vie si "+" starea moarta
-* Taskul 1 realizeaza transformarile specifice regulilor Game of Life, schimbarile fiind tinute minte intr o lista iar apoi sunt aplicate in fiecare generatie asupra unei matrice
+* Taskul 1 realizeaza transformarile specifice regulilor Game of Life, schimbarile fiind retinute intr-o lista iar apoi sunt aplicate in fiecare generatie asupra unei matrice
 * Taskul 2 aplica aceleasi reguli dar in loc sa se foloseasca de o matrice, acesta retine toate listele de schimbari intr-o stiva pe care apoi o foloseste sa afiseze toate generatiile
 * Taskul 3 creeaza un arbore in care pe ramura stanga se aplica o noua regula, orice celula cu exact doi vecini vii devine celulă vie, iar pe ramura dreapta aplica aceeasi regula ca la Taskul 1.
 * Taskul 4 se foloseste de arborele creat la Taskul 3 pentru a transforma fiecare nod intr-un graf si apoi afla cel mai lung lant hamiltonian din acel graf, cu conditia ca daca sunt mai multe lanturi cu aceeasi lungime se va alege cel cu nodurile cu indicii mai mici
