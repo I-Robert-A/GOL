@@ -30,4 +30,4 @@ In fisierul GameofLifeB.c se afla toate functiile, iar in JoculVietii2.c se afla
 Apoi imparte graful in componente conexe in matricea comp_conex, unde primul element de pe fiecare linie este numarul de noduri din acea componenta.
 Apoi foloseste inca o metoda de optimizare, aceea sa ordoneze componente conexe in ordine descrescatoare in functie de numarul de noduri pentru a putea determina daca mai are rost sa cautam si in acelea cel mai lung lant hamiltonian.
 Apoi ordoneaza crescator ndoruile componentelor conexe pentru a putea respecta regula ca daca sunt doua lanturi de aceeasi lungime sa se ia cea cu nodurile cu indicii cei mai mici.
-Apoi dupa ce s a gasit cel mai lung lant se face transformarea din noduri in coordonate ale matricei cu o lista nodes in care au fost notate aceste date mai devreme.
+Apoi dupa ce s-a gasit cel mai lung lant se face transformarea din noduri in coordonate ale matricei cu o lista nodes in care au fost notate aceste date mai devreme.
