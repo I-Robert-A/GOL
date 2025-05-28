@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
 FILE* mINT,* mOUT;
 char** ma;
 stiva* topS=NULL;
-list *elem=NULL;
+//const list *elem;
 int q=0;
 int n,m,k,p,r=0,r1=0; 
 FOP(&mINT,argv[1],"rt"); 
@@ -42,10 +42,14 @@ fscanf(mINT, "%d %d %d %d", &p,&n, &m, &k);
         postorder(&root);
     }
     if(p==2)
-    {   //task2(mINT,ma,n,m,k,mOUT,p,&topS,&q);
+    {   task2(mINT,ma,n,m,k,mOUT,p,&topS,&q);
         //merge dar dureaza mult!!
-        //afisareS(&topS, mOUT, q);
-    //eliberareStivaComplet(topS);
+        afisareS(&topS, mOUT, q);
+    eliberareStivaComplet(topS);
+        }
+        if(p==10)
+        {
+            bonus(&topS,ma,n,m);
         }
     for(i=0;i<n;i++)
     {

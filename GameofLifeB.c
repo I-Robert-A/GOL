@@ -1,18 +1,5 @@
 #include "JoculVietii.h"
-void push(list **top, int li, int co)
-{
-    list *elem;
-    elem = (list *)malloc(sizeof(list));
-    if (elem == NULL)
-    {
-        printf("Eroare la alocarea memoriei\n");
-        exit(1);
-    }
-    elem->next = (*top);
-    (*top) = elem;
-    elem->l = li;
-    elem->c = co;
-}
+
 
 void pushL(stiva **top, list *elemL)
 {
@@ -61,16 +48,16 @@ void addAtBeginning(list **head, int l, int c)
 
 void eliberareStivaComplet(stiva *top)
 {
-    stiva *topS;
     while (top != NULL)
     {
-        list *elem;
         while (top->Lista != NULL)
         {
+            list *elem;
             elem = top->Lista;
             top->Lista = top->Lista->next;
             free(elem);
         }
+        stiva *topS;
         topS = top;
         top = top->next;
         free(topS);
@@ -167,9 +154,9 @@ void buildInCompVector(const int *comp_conex, bool *inComp, int totalNodes)
     }
 }
 
-void DFS(Graph *g, int visited[], int i, int k, list **top, list **maxList,
-         int *max, int remaining, int *comp_conex, bool *inComp)
+void DFS(Graph *g, int visited[], int i, int k, list **top, list **maxList,int *max, int remaining, int *comp_conex, bool *inComp)
 {
+    int jj;
     if (!inComp[i])
         return;
     visited[i] = 1;
@@ -184,9 +171,9 @@ void DFS(Graph *g, int visited[], int i, int k, list **top, list **maxList,
     }
 
     int unvisitedInComp = 0;
-    for (int idx = 1; idx <= comp_conex[0]; idx++)
+    for (jj = 1; jj <= comp_conex[0]; jj++)
     {
-        if (!visited[comp_conex[idx]])
+        if (visited[comp_conex[jj]]==0)
         {
             unvisitedInComp++;
         }
@@ -202,17 +189,17 @@ void DFS(Graph *g, int visited[], int i, int k, list **top, list **maxList,
     int *neighbors = (int *)malloc(g->V * sizeof(int));
     int neighborCount = 0;
 
-    for (int j = 0; j < g->V; j++)
+    for (jj = 0; jj < g->V; jj++)
     {
-        if (g->a[i][j] == 1 && visited[j] == 0 && inComp[j])
+        if (g->a[i][jj] == 1 && visited[jj] == 0 && inComp[jj])
         {
-            neighbors[neighborCount++] = j;
+            neighbors[neighborCount++] = jj;
         }
     }
 
-    for (int idx = 0; idx < neighborCount; idx++)
+    for (jj = 0; jj < neighborCount; jj++)
     {
-        DFS(g, visited, neighbors[idx], k + 1, top, maxList, max, remaining - 1, comp_conex, inComp);
+        DFS(g, visited, neighbors[jj], k + 1, top, maxList, max, remaining - 1, comp_conex, inComp);
     }
 
     free(neighbors);
@@ -564,11 +551,9 @@ void taskuri(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p)
 
 void task2(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, stiva **topS, int *q)
 {
-    int i, j, ko, l, c, r = 0,bi=0;
-    char lista[256];
+    int i, j, ko, r = 0,bi;
     list *top = NULL, *elem = NULL;
     stiva *aux;
-    aux=*topS;
     char stare;
     while (k != 0)
     { 
@@ -625,9 +610,7 @@ void task2(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, stiv
 
 void afisareS(stiva **topS, FILE *mOUT, int q)
 {
-    int i, j;
-    char lista[256];
-    list *elem, *aux;
+    list *elem;
     if ((*topS)->next)
     {
         afisareS(&(*topS)->next, mOUT, q - 1);
@@ -637,6 +620,7 @@ void afisareS(stiva **topS, FILE *mOUT, int q)
     elem = popL(topS);
     while (elem != NULL)
     {
+        list* aux;
         aux = elem;
         fprintf(mOUT, " %d %d", elem->l, elem->c);
         elem = elem->next;
@@ -707,7 +691,7 @@ Node *CreateA(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, i
     }
     printf("%d ", p);
 
-    if (p == 5)
+    if (p == 4)
     {
         int *visited, noduri = 0, ko, sum = 0, ko2;
         int **comp_conex;
@@ -874,14 +858,14 @@ Node *CreateA(FILE *fisier, char **ma, int n, int m, int k, FILE *mOUT, int p, i
             }
         }
 
-        for (i = 0; i < sum; i++)
+        /*for (i = 0; i < sum; i++)
         {
             for (j = 0; j <= comp_conex[i][0]; j++)
             {
                 printf("sss%d ", comp_conex[i][j]);
             }
             printf("\n");
-        }
+        }*/
 
         bool *inComp = (bool *)calloc(g->V, sizeof(bool));
 
